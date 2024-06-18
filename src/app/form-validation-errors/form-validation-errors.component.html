@@ -1,0 +1,24 @@
+@for (item of errors() | keyvalue; track $index) {
+<div>
+  @switch (item.key) {
+    @case("required") {
+      Поле обязательно к заполнению.
+    }
+    @case("minlength") {
+      Минимум {{item.value.requiredLength}} символов.
+    }
+    @case("maxlength") {
+      Максимум {{item.value.requiredLength}} символов.
+    }
+    @case("min") {
+      Не меньше {{item.value.min}}.
+    }
+    @case("min") {
+      Не больше {{item.value.min}}.
+    }
+    @default { 
+      {{ item | json }}
+    }
+  }
+</div>
+}

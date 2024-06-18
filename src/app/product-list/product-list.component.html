@@ -1,0 +1,45 @@
+@switch (products().result) {
+  @case ("ok") {
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Название</th>
+          <th>Цена</th>
+          <th style="width: 1%;">Удалить</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (product of $any(products()).value; track $index) {
+          <tr>
+            <td><a [routerLink]="['/product', product.id]">{{product.name}}</a></td>
+            <td>{{product.price}}</td>
+            <td class="text-center">
+              <button 
+                type="button"
+                class="btn btn-danger btn-sm"
+                (click)="delete(product)"
+                >X</button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+
+  @case ("loading") {
+    <div class="d-flex justify-content-center m-5">
+      <div class="spinner-border" role="status"></div>
+    </div>
+  }
+
+  @case ("error") {
+    <h1>Ошибка загрузки</h1>
+    <pre>{{$any(products()).message}}</pre>
+    <button type="button" class="btn btn-primary" (click)="fetch()">Попробовать снова</button>
+  }
+}
+<button 
+  type="button"
+  class="btn btn-primary"
+  routerLink="/product/new"
+  >Новый продукт</button>

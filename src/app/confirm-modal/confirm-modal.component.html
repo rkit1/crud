@@ -1,0 +1,10 @@
+<div class="modal-header">
+  <h4 class="modal-title">Подтверждение</h4>
+</div>
+<div class="modal-body">
+  <p>{{question()}}</p>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-{{yesColor()}}" (click)="activeModal.close('yes')">Да</button>
+  <button type="button" class="btn btn-outline-{{noColor()}}" (click)="activeModal.close('no')">Нет</button>
+</div>
