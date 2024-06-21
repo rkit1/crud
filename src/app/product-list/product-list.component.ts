@@ -19,7 +19,7 @@ export class ProductListComponent implements OnInit {
   private api = inject(ApiService);
   private modalService = inject(NgbModal);
 
-  products = signal<FetchResult<ProductList>>({ result: "loading" });
+  products = signal<FetchResult<ProductList>>({result: "loading"});
 
   ngOnInit() {
     this.fetch();
@@ -39,7 +39,7 @@ export class ProductListComponent implements OnInit {
     if (res == "yes") {
       this.products.set({result: "loading"});
       try {
-        await O.firstValueFrom(this.api.deleteProduct(p.id));
+        await O.lastValueFrom(this.api.deleteProduct(p.id));
       } finally {
         this.fetch();
       }

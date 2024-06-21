@@ -35,7 +35,7 @@ export class ProductEditComponent implements OnInit {
 
   ngOnInit() {
     this.fetch();
-    console.log(this.form);
+    // console.log(this.form);
   }
 
   async onSubmit() {

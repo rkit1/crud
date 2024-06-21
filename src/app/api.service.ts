@@ -29,18 +29,18 @@ export class ApiService {
 
 function wrapApiCall<T>(call: O.Observable<T>): O.Observable<FetchResult<T>> {
   return call.pipe(
-    Op.startWith({
-      result: "loading"
-    } as FetchResult<T>),
-
     Op.map(val => ({
       result: "ok",
-      value: val
-    }) as FetchResult<T>),
+      value: val,
+     }) as FetchResult<T>),
 
     Op.catchError(error => O.of({
       result: "error",
       message: JSON.stringify(error)
     } as FetchResult<T>)),
+
+    Op.startWith({
+      result: "loading",
+     } as FetchResult<T>),
   )
 }
